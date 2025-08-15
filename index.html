@@ -1,0 +1,299 @@
+<!-- engagement-invite/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vishnu & Sreelakshmi - Engagement Invite</title>
+  <!-- <script type="module" crossorigin src="/main.js"></script> -->
+  <link href="https://fonts.googleapis.com/css2?family=Carattere&family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #fff0f5, #e6f7ff);
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 2.5rem 1rem 1rem;
+      background-image: url('/floral-top.svg');
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: contain;
+    }
+
+    .hero img {
+      width: 75%;
+      max-width: 350px;
+      border-radius: 1rem;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .names {
+      font-family: 'Carattere', cursive;
+      font-size: 2.5rem;
+      margin-top: 1rem;
+      color: #d63384;
+      word-break: keep-all;
+      white-space: nowrap;
+    }
+
+    .name-pair {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .name-individual {
+      animation: fadeIn 1.5s ease forwards;
+      text-transform: capitalize;
+    }
+
+    .name-individual:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 558px) {
+      .names {
+        white-space: normal;
+        display: block;
+      }
+
+      .name-pair {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+    }
+
+    .ring {
+      font-size: 25px;
+    }
+
+    .message {
+      font-size: 1rem;
+      color: #444;
+      margin: 0.75rem auto 2rem;
+      max-width: 85%;
+      text-align: center;
+    }
+
+    .section {
+      text-align: center;
+      background: #fff;
+      margin: 1.5rem 1rem;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #5e2a5c;
+      margin-bottom: 0.25rem;
+    }
+
+    .text {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      color: #d63384;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .bottom-floral {
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      padding-bottom: 1rem;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 3s ease-out forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<div class="hero" data-aos="fade-down">
+  <img src="vishsree.png" alt="Vishnu & Sreelakshmi" />
+  <div class="names name-pair">
+    <div class="name-individual">Vishnu K K</div>
+    <div class="ring">💍</div>
+    <div class="name-individual">Dr.Sreelakshmi A T</div>
+  </div>
+</div>
+<div class="message">
+  We are happy to announce our engagement!<br />
+  As we take a step forward in our journey together,<br />
+  we would love for you to be part of this beautiful moment.<br />
+  Join us as we celebrate love, laughter, and togetherness,<br />
+  and let’s create memories we’ll cherish forever.<br />
+</div>
+</div>
+
+<div class="section" data-aos="fade-up">
+  <div class="title">Date & Time</div>
+  <div class="text">Sept 7, 2025 at 10:00 AM</div>
+</div>
+
+<div class="section" data-aos="fade-up">
+  <div class="title">Location</div>
+  <div class="text">
+    <a href="https://maps.app.goo.gl/cEGv9oPbsei6YP9MA" target="_blank" title="View on Google Maps"
+      style="display: inline-flex; align-items: center; text-decoration: none; color: inherit; ">
+      📍Agricultural Cooperative Bank Auditorium Muvattupuzha
+    </a>
+  </div>
+</div>
+
+
+<div class="section" data-aos="zoom-in">
+  <div class="text">We can't wait to share this beautiful moment with you 💖</div>
+</div>
+
+<div class="section" data-aos="fade-up">
+  <div class="title">Countdown to Our Day</div>
+  <div id="countdown" class="countdown"></div>
+</div>
+<audio id="bgm" src="thatathin-bgm.mp3"></audio>
+
+
+<footer>Made with ❤️ by Vishnu</footer>
+
+<script>
+  AOS.init({ duration: 1000 });
+
+  // Countdown Timer
+  const targetDate = new Date("2025-09-07T10:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      countdownEl.innerHTML = "It's the day! 💞";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+
+<script>
+  //   let musicPlayed = false;
+  // const audio = new Audio('/thatathin-bgm.mp3');
+
+  function createEmoji(x, y) {
+    const emoji = document.createElement('span');
+    emoji.className = 'emoji';
+    emoji.innerText = '💖'; // You can randomize this
+
+    emoji.style.left = x + 'px';
+    emoji.style.top = y + 'px';
+
+    document.body.appendChild(emoji);
+
+    setTimeout(() => emoji.remove(), 1000);
+  }
+
+  // For clicks/taps
+  document.addEventListener('click', (e) => {
+    createEmoji(e.pageX, e.pageY);
+  });
+
+  // For touchmove (scroll)
+  let lastTouchTime = 0;
+  document.addEventListener('touchmove', (e) => {
+    const now = Date.now();
+
+    // Throttle emoji creation to avoid too many per second
+    if (now - lastTouchTime > 100) {
+      const touch = e.touches[0];
+      createEmoji(touch.pageX, touch.pageY);
+      lastTouchTime = now;
+    }
+  });
+
+  // for music:
+
+  let musicPlayed = false;
+
+  function playMusicOnce() {
+    if (musicPlayed) return;
+
+    const audio = document.getElementById('bgm');
+    audio.currentTime = 0;
+    audio.play().then(() => {
+      musicPlayed = true;
+    }).catch((err) => {
+      console.log('Autoplay failed:', err);
+    });
+  }
+
+  // Touch or scroll triggers on mobile
+  document.addEventListener('touchstart', playMusicOnce, { once: true });
+  document.addEventListener('scroll', playMusicOnce, { once: true });
+
+  // // Also support mouse click for desktop
+  document.addEventListener('click', playMusicOnce, { once: true });
+</script>
+
+</html>
