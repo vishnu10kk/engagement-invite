@@ -1,4 +1,3 @@
-<!-- engagement-invite/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,12 +5,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vishnu & Sreelakshmi - Engagement Invite</title>
-  <!-- <script type="module" crossorigin src="/main.js"></script> -->
-  <link href="https://fonts.googleapis.com/css2?family=Carattere&family=Inter:wght@400;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Carattere&family=Inter:wght@400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <style>
+    :root {
+      --primary-pink: #d63384;
+      --soft-pink: #fff0f5;
+      --light-blue: #e6f7ff;
+      --deep-purple: #5e2a5c;
+      --gold: #ffd700;
+      --text-dark: #333;
+      --text-light: #666;
+      --shadow-light: rgba(0, 0, 0, 0.05);
+      --shadow-medium: rgba(0, 0, 0, 0.1);
+      --shadow-heavy: rgba(0, 0, 0, 0.2);
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -19,133 +29,304 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom, #fff0f5, #e6f7ff);
+      background: linear-gradient(135deg, var(--soft-pink) 0%, var(--light-blue) 50%, #f8f0ff 100%);
       overflow-x: hidden;
+      position: relative;
     }
 
+    /* Animated background particles */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background: var(--primary-pink);
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100px) rotate(360deg); }
+    }
+
+    /* Hero section with enhanced styling */
     .hero {
       position: relative;
       text-align: center;
-      padding: 2.5rem 1rem 1rem;
-      background-image: url('/floral-top.svg');
-      background-repeat: no-repeat;
-      background-position: top center;
-      background-size: contain;
+      padding: 3rem 1rem 2rem;
+      background: linear-gradient(135deg, rgba(255, 240, 245, 0.9), rgba(230, 247, 255, 0.9));
+      backdrop-filter: blur(10px);
+      border-radius: 0 0 2rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px var(--shadow-medium);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, var(--gold), transparent);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+      50% { transform: translateX(-50%) scale(1.2); opacity: 0.6; }
     }
 
     .hero img {
       width: 75%;
       max-width: 350px;
-      border-radius: 1rem;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+      border-radius: 2rem;
+      box-shadow: 0 15px 40px var(--shadow-heavy);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .hero img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 20px 50px var(--shadow-heavy);
     }
 
     .names {
-      font-family: 'Carattere', cursive;
-      font-size: 2.5rem;
-      margin-top: 1rem;
-      color: #d63384;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-top: 1.5rem;
+      color: var(--primary-pink);
       word-break: keep-all;
       white-space: nowrap;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     .name-pair {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
 
     .name-individual {
-      animation: fadeIn 1.5s ease forwards;
+      animation: slideInFromSides 1.5s ease forwards;
       text-transform: capitalize;
+      position: relative;
     }
 
-    .name-individual:nth-child(2) {
-      animation-delay: 0.5s;
+    .name-individual:nth-child(1) {
+      animation-name: slideInFromLeft;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
+    .name-individual:nth-child(3) {
+      animation-name: slideInFromRight;
+      animation-delay: 0.3s;
+    }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-50px) rotate(-5deg); }
+      to { opacity: 1; transform: translateX(0) rotate(0deg); }
+    }
+
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(50px) rotate(5deg); }
+      to { opacity: 1; transform: translateX(0) rotate(0deg); }
+    }
+
+    .ring {
+      font-size: 35px;
+      animation: bounce 2s ease infinite;
+      filter: drop-shadow(0 4px 6px rgba(214, 51, 132, 0.3));
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
     }
 
     @media (max-width: 558px) {
       .names {
+        font-size: 2.5rem;
         white-space: normal;
         display: block;
       }
 
       .name-pair {
         flex-direction: column;
-        gap: 0.3rem;
+        gap: 0.5rem;
       }
     }
 
-    .ring {
-      font-size: 25px;
-    }
-
     .message {
-      font-size: 1rem;
-      color: #444;
-      margin: 0.75rem auto 2rem;
-      max-width: 85%;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin: 1rem auto 2rem;
+      max-width: 90%;
       text-align: center;
+      line-height: 1.8;
+      font-style: italic;
+      background: linear-gradient(45deg, var(--primary-pink), var(--deep-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .section {
       text-align: center;
-      background: #fff;
-      margin: 1.5rem 1rem;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.95);
+      margin: 2rem 1rem;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 8px 25px var(--shadow-light);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--primary-pink), var(--gold), var(--deep-purple));
+      border-radius: 2rem;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px var(--shadow-medium);
+    }
+
+    .section:hover::before {
+      opacity: 0.1;
     }
 
     .title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #5e2a5c;
-      margin-bottom: 0.25rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--deep-purple);
+      margin-bottom: 0.8rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-pink), var(--gold));
+      border-radius: 2px;
     }
 
     .text {
       font-size: 1.1rem;
-      color: #333;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .location-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(45deg, var(--primary-pink), #ff6b9d);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(214, 51, 132, 0.3);
+      font-weight: 600;
+    }
+
+    .map-link:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(214, 51, 132, 0.5);
     }
 
     .countdown {
-      font-size: 2rem;
-      color: #d63384;
+      font-size: 2.5rem;
+      color: var(--primary-pink);
       font-weight: bold;
       margin-top: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .bottom-floral {
-      width: 100%;
-      margin-top: 2rem;
+    .countdown-unit {
+      background: linear-gradient(135deg, var(--primary-pink), #ff6b9d);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(214, 51, 132, 0.3);
+      min-width: 80px;
+      animation: countPulse 2s ease-in-out infinite;
+    }
+
+    .countdown-unit:nth-child(2) { animation-delay: 0.5s; }
+    .countdown-unit:nth-child(3) { animation-delay: 1s; }
+    .countdown-unit:nth-child(4) { animation-delay: 1.5s; }
+
+    @keyframes countPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .countdown-label {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
     }
 
     footer {
       text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-      padding-bottom: 1rem;
+      font-size: 1rem;
+      color: var(--text-light);
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, rgba(255, 240, 245, 0.8), rgba(230, 247, 255, 0.8));
+      backdrop-filter: blur(10px);
+      margin-top: 3rem;
     }
 
     .emoji {
       position: absolute;
-      font-size: 24px;
-      animation: floatUp 3s ease-out forwards;
+      font-size: 28px;
+      animation: floatUp 4s ease-out forwards;
       pointer-events: none;
       z-index: 9999;
     }
@@ -153,147 +334,406 @@
     @keyframes floatUp {
       0% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1) rotate(0deg);
       }
-
       100% {
         opacity: 0;
-        transform: translateY(-100px) scale(1.5);
+        transform: translateY(-120px) scale(1.8) rotate(360deg);
+      }
+    }
+
+    /* Special effects */
+    .sparkle {
+      position: absolute;
+      color: var(--gold);
+      font-size: 20px;
+      animation: sparkleAnimation 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sparkleAnimation {
+      0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1) rotate(180deg); }
+    }
+
+    /* Music Control Button */
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, var(--primary-pink), #ff6b9d);
+      border: 3px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10000;
+      box-shadow: 0 6px 20px rgba(214, 51, 132, 0.4);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .music-control:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(214, 51, 132, 0.6);
+    }
+
+    .music-control.playing {
+      animation: musicPulse 2s ease-in-out infinite;
+    }
+
+    .music-control.muted {
+      background: linear-gradient(45deg, #666, #888);
+      animation: mutedPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(214, 51, 132, 0.4);
+      }
+      50% { 
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(214, 51, 132, 0.6);
+      }
+    }
+
+    @keyframes mutedPulse {
+      0%, 100% { 
+        opacity: 0.8;
+      }
+      50% { 
+        opacity: 1;
+      }
+    }
+
+    /* Music notification */
+    .music-notification {
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 12px 16px;
+      border-radius: 25px;
+      font-size: 14px;
+      color: var(--text-dark);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.3s ease;
+      z-index: 9999;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .music-notification.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Enhanced responsive design */
+    @media (max-width: 768px) {
+      .countdown {
+        font-size: 1.8rem;
+      }
+      
+      .countdown-unit {
+        min-width: 70px;
+        padding: 0.8rem 1rem;
+      }
+      
+      .section {
+        margin: 1.5rem 0.8rem;
+        padding: 1.5rem;
+      }
+
+      .music-control {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        bottom: 15px;
+        right: 6px;
+      }
+
+      .music-notification {
+        right: 15px;
+        top: 80px;
+        font-size: 13px;
+        max-width: 180px;
       }
     }
   </style>
 </head>
-<div class="hero" data-aos="fade-down">
-  <img src="vishsree.png" alt="Vishnu & Sreelakshmi" />
-  <div class="names name-pair">
-    <div class="name-individual">Vishnu K K</div>
-    <div class="ring">💍</div>
-    <div class="name-individual">Dr.Sreelakshmi A T</div>
+
+<body>
+  <div class="bg-particles" id="particles"></div>
+
+  <div class="hero" data-aos="fade-down">
+    <img src="vishsree.png" alt="Vishnu & Sreelakshmi" />
+    <div class="names name-pair">
+      <div class="name-individual">Vishnu K K</div>
+      <div class="ring">💍</div>
+      <div class="name-individual">Dr.Sreelakshmi A T</div>
+    </div>
   </div>
-</div>
-<div class="message">
-  We are happy to announce our engagement!<br />
-  As we take a step forward in our journey together,<br />
-  we would love for you to be part of this beautiful moment.<br />
-  Join us as we celebrate love, laughter, and togetherness,<br />
-  and let’s create memories we’ll cherish forever.<br />
-</div>
-</div>
 
-<div class="section" data-aos="fade-up">
-  <div class="title">Date & Time</div>
-  <div class="text">Sept 7, 2025 at 10:00 AM</div>
-</div>
+  <div class="message" data-aos="fade-up">
+    ✨ We are overjoyed to share the happiest news of our lives… 💍
+    As we take this beautiful step forward in our journey together,
+    we are delighted to celebrate our Engagement with you. ❤️<br>
 
-<div class="section" data-aos="fade-up">
-  <div class="title">Location</div>
-  <div class="text">
-    <a href="https://maps.app.goo.gl/cEGv9oPbsei6YP9MA" target="_blank" title="View on Google Maps"
-      style="display: inline-flex; align-items: center; text-decoration: none; color: inherit; ">
-      📍Agricultural Cooperative Bank Auditorium Muvattupuzha
-    </a>
+    Come join us as we celebrate love, laughter, and togetherness—
+    and create memories that will shine in our hearts forever. ✨
   </div>
-</div>
 
+  <div class="section" data-aos="fade-up">
+    <div class="title">Date & Time</div>
+    <div class="text">September 7, 2025 at 10:00 AM</div>
+  </div>
 
-<div class="section" data-aos="zoom-in">
-  <div class="text">We can't wait to share this beautiful moment with you 💖</div>
-</div>
+  <div class="section" data-aos="fade-up">
+    <div class="title">Location</div>
+    <div class="text">
+      <div class="location-container">
+        <div>Agricultural Cooperative Bank Auditorium Muvattupuzha</div>
+        <a href="https://maps.app.goo.gl/cEGv9oPbsei6YP9MA" target="_blank" class="map-link">
+          📍 View on Maps
+        </a>
+      </div>
+    </div>
+  </div>
 
-<div class="section" data-aos="fade-up">
-  <div class="title">Countdown to Our Day</div>
-  <div id="countdown" class="countdown"></div>
-</div>
-<audio id="bgm" src="thatathin-bgm.mp3"></audio>
+  <div class="section" data-aos="zoom-in">
+    <div class="text">We can't wait to share this beautiful moment with you 💖</div>
+  </div>
 
+  <div class="section" data-aos="fade-up">
+    <div class="title">Countdown to Our Day</div>
+    <div id="countdown" class="countdown"></div>
+  </div>
 
-<footer>Made with ❤️ by Vishnu</footer>
+  <footer>Made with ❤️ by Vishnu</footer>
 
-<script>
-  AOS.init({ duration: 1000 });
+  <!-- Background Music -->
+  <audio id="bgm" src="thatathin-bgm.mp3" muted></audio>
 
-  // Countdown Timer
-  const targetDate = new Date("2025-09-07T10:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
+  <!-- Music Control Button -->
+  <div id="musicControl" class="music-control muted" title="Click to enable music">
+    🔇
+  </div>
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+  <!-- Music Notification -->
+  <div id="musicNotification" class="music-notification">
+    Click 🎵 to enjoy background music!
+  </div>
 
-    if (distance <= 0) {
-      countdownEl.innerHTML = "It's the day! 💞";
-      return;
+  <script>
+    AOS.init({ duration: 1200, easing: 'ease-out-cubic' });
+
+    // Create floating particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.width = particle.style.height = (Math.random() * 8 + 4) + 'px';
+        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(particle);
+      }
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Enhanced countdown with individual units
+    const targetDate = new Date("2025-09-07T10:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
 
-    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-  setInterval(updateCountdown, 1000);
-</script>
-</body>
+      if (distance <= 0) {
+        countdownEl.innerHTML = "<div style='font-size: 2rem; color: var(--gold);'>It's the day! 💞</div>";
+        return;
+      }
 
-<script>
-  //   let musicPlayed = false;
-  // const audio = new Audio('/thatathin-bgm.mp3');
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  function createEmoji(x, y) {
-    const emoji = document.createElement('span');
-    emoji.className = 'emoji';
-    emoji.innerText = '💖'; // You can randomize this
-
-    emoji.style.left = x + 'px';
-    emoji.style.top = y + 'px';
-
-    document.body.appendChild(emoji);
-
-    setTimeout(() => emoji.remove(), 1000);
-  }
-
-  // For clicks/taps
-  document.addEventListener('click', (e) => {
-    createEmoji(e.pageX, e.pageY);
-  });
-
-  // For touchmove (scroll)
-  let lastTouchTime = 0;
-  document.addEventListener('touchmove', (e) => {
-    const now = Date.now();
-
-    // Throttle emoji creation to avoid too many per second
-    if (now - lastTouchTime > 100) {
-      const touch = e.touches[0];
-      createEmoji(touch.pageX, touch.pageY);
-      lastTouchTime = now;
+      countdownEl.innerHTML = `
+        <div class="countdown-unit">
+          ${days}<span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          ${hours}<span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          ${minutes}<span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          ${seconds}<span class="countdown-label">Seconds</span>
+        </div>
+      `;
     }
-  });
 
-  // for music:
+    // Enhanced emoji creation with variety
+    const emojiArray = ['💖', '💕', '💗', '💝', '💘', '🌹', '✨', '💍', '💐'];
+    
+    function createEmoji(x, y) {
+      const emoji = document.createElement('span');
+      emoji.className = 'emoji';
+      emoji.innerText = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+      
+      emoji.style.left = x + 'px';
+      emoji.style.top = y + 'px';
+      
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 4000);
+    }
 
-  let musicPlayed = false;
+    // Add sparkle effects randomly
+    function createSparkle() {
+      const sparkle = document.createElement('span');
+      sparkle.className = 'sparkle';
+      sparkle.innerText = '✨';
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 3000);
+    }
 
-  function playMusicOnce() {
-    if (musicPlayed) return;
-
-    const audio = document.getElementById('bgm');
-    audio.currentTime = 0;
-    audio.play().then(() => {
-      musicPlayed = true;
-    }).catch((err) => {
-      console.log('Autoplay failed:', err);
+    // Event listeners
+    document.addEventListener('click', (e) => {
+      createEmoji(e.pageX, e.pageY);
     });
-  }
 
-  // Touch or scroll triggers on mobile
-  document.addEventListener('touchstart', playMusicOnce, { once: true });
-  document.addEventListener('scroll', playMusicOnce, { once: true });
+    let lastTouchTime = 0;
+    document.addEventListener('touchmove', (e) => {
+      const now = Date.now();
+      if (now - lastTouchTime > 100) {
+        const touch = e.touches[0];
+        createEmoji(touch.pageX, touch.pageY);
+        lastTouchTime = now;
+      }
+    });
 
-  // // Also support mouse click for desktop
-  document.addEventListener('click', playMusicOnce, { once: true });
-</script>
+    // Initialize
+    createParticles();
+    setInterval(updateCountdown, 1000);
+    setInterval(createSparkle, 2000);
+    updateCountdown();
+
+    // Enhanced Music functionality with Muted Autoplay + Unmute Button
+    const audio = document.getElementById('bgm');
+    const musicControl = document.getElementById('musicControl');
+    const musicNotification = document.getElementById('musicNotification');
+    
+    let musicEnabled = false;
+    let autoplayAttempted = false;
+    
+    // Set audio properties
+    audio.volume = 0.6;
+    audio.loop = false;
+    audio.muted = true; // Start muted to allow autoplay
+    
+    // Try to start muted autoplay immediately
+    function attemptAutoplay() {
+      if (autoplayAttempted) return;
+      autoplayAttempted = true;
+      
+      audio.play().then(() => {
+        console.log('🎵 Muted autoplay successful! Audio is ready.');
+        showMusicNotification();
+      }).catch((err) => {
+        console.log('Even muted autoplay failed:', err);
+        // Fallback: try again on first user interaction
+        document.addEventListener('click', attemptAutoplay, { once: true });
+        document.addEventListener('touchstart', attemptAutoplay, { once: true });
+      });
+    }
+    
+    // Show notification to enable music
+    function showMusicNotification() {
+      setTimeout(() => {
+        musicNotification.classList.add('show');
+        
+        // Auto-hide notification after 4 seconds
+        setTimeout(() => {
+          musicNotification.classList.remove('show');
+        }, 4000);
+      }, 2000); // Show after 2 seconds
+    }
+    
+    // Music control button functionality
+    musicControl.addEventListener('click', function() {
+      if (!musicEnabled) {
+        // Enable music
+        audio.muted = false;
+        musicEnabled = true;
+        musicControl.innerHTML = '🎵';
+        musicControl.classList.remove('muted');
+        musicControl.classList.add('playing');
+        musicControl.title = 'Music is playing - Click to mute';
+        
+        // Hide notification
+        musicNotification.classList.remove('show');
+        
+        // If audio isn't playing yet, start it
+        if (audio.paused) {
+          audio.play().then(() => {
+            console.log('🎵 Music started playing!');
+          }).catch((err) => {
+            console.error('Failed to play audio:', err);
+          });
+        }
+        
+        console.log('🎵 Music enabled by user!');
+      } else {
+        // Toggle mute/unmute
+        if (audio.muted) {
+          audio.muted = false;
+          musicControl.innerHTML = '🎵';
+          musicControl.classList.remove('muted');
+          musicControl.classList.add('playing');
+          musicControl.title = 'Music is playing - Click to mute';
+        } else {
+          audio.muted = true;
+          musicControl.innerHTML = '🔇';
+          musicControl.classList.remove('playing');
+          musicControl.classList.add('muted');
+          musicControl.title = 'Music is muted - Click to unmute';
+        }
+      }
+    });
+    
+    // Additional fallback: try to enable muted autoplay on various interactions
+    function enableMutedAutoplay() {
+      if (audio.paused && autoplayAttempted) {
+        audio.play().catch(() => {
+          // Silent fail - user will need to click music button
+        });
+      }
+    }
+    
+    document.addEventListener('scroll', enableMutedAutoplay, { once: true });
+    document.addEventListener('touchmove', enableMutedAutoplay, { once: true });
+    
+    // Start the autoplay attempt immediately when page loads
+    window.addEventListener('load', () => {
+      setTimeout(attemptAutoplay, 500);
+    });
+    
+    // Also try immediately
+    attemptAutoplay();
+  </script>
+</body>
 
 </html>
